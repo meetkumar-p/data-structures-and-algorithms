@@ -16,4 +16,6 @@ jobs:
       - name: Run static analysis
         run: make cppcheck
       - name: Build the repository
-        run: make
+        run: make all
+      - name: Build all tests
+        run: make test
