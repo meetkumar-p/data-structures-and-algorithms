@@ -65,6 +65,6 @@ void linked_list_singly_free(Linked_List_Singly_Node **linked_list);
  *
  * @param linked_list   Singly linked list.
  */
-void linked_list_print(Linked_List_Singly_Node const *linked_list);
+void linked_list_singly_print(Linked_List_Singly_Node const *linked_list);
 
 #endif  // LINKED_LIST_H_
