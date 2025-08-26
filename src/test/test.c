@@ -60,6 +60,55 @@ static void test_linked_list_singly(void)
     linked_list_singly_free(&linked_list);
 }
 
+SUPPRESS_UNUSED
+
+/**
+ * @brief Create, print, and delete a linked list.
+ *
+ */
+static void test_linked_list(void)
+{
+    Linked_List_Node *linked_list = NULL;
+
+    for(int32_t count = 0; count < 25; count++)
+    {
+        linked_list_insert(&linked_list, count);
+    }
+
+    printf("Linked list after inserting 25 nodes at head\n\r");
+    linked_list_print(linked_list);
+
+    Linked_List_Node *node_21 = linked_list_find(linked_list, 21);
+    linked_list_insert_before(node_21, linked_list_create(99));
+
+    printf("\n\rLinked list after inserting node:99 before node:21\n\r");
+    linked_list_print(linked_list);
+
+    linked_list_delete(&linked_list);
+
+    printf("\n\rLinked list after deleting first node at head\n\r");
+    linked_list_print(linked_list);
+
+    Linked_List_Node *node_5 = linked_list_find(linked_list, 5);
+    linked_list_insert_after(node_5, linked_list_create(84));
+
+    printf("\n\rLinked list after inserting node:84 after node:5\n\r");
+    linked_list_print(linked_list);
+
+    linked_list_insert(&linked_list, 9);
+
+    printf("\n\rLinked list after inserting node:9 at head\n\r");
+    linked_list_print(linked_list);
+
+    Linked_List_Node *node_9 = linked_list_find(linked_list, 9);
+    linked_list_insert_before(node_9, linked_list_create(42));
+
+    printf("\n\rLinked list after inserting node:42 before node:9 that is closest to head\n\r");
+    linked_list_print(linked_list);
+
+    linked_list_free(&linked_list);
+}
+
 int main(void)
 {
     TEST();
