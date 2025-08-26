@@ -14,6 +14,7 @@ Linked_List_Singly_Node *linked_list_singly_create(const int32_t data)
     Linked_List_Singly_Node *node;
     node = (Linked_List_Singly_Node *)malloc(sizeof(Linked_List_Singly_Node));
     node->data = data;
+    node->next = NULL;
 
     return node;
 }
