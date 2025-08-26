@@ -1,6 +1,7 @@
 # Directories
 SRC_DIR = src
 COMMON_DIR = $(SRC_DIR)/common
+DATA_STRUCT_DIR = $(SRC_DIR)/data_structures
 TEST_DIR = $(SRC_DIR)/test
 
 BUILD_DIR = build
@@ -8,7 +9,9 @@ OBJ_DIR = $(BUILD_DIR)/obj
 BIN_DIR = $(BUILD_DIR)/bin
 
 INCLUDE_DIRS = \
-				$(SRC_DIR)
+				$(SRC_DIR) \
+				$(COMMON_DIR) \
+				$(DATA_STRUCT_DIR)
 
 # Toolchain
 CC = clang
@@ -53,11 +56,16 @@ MAIN_FILE = $(TEST_DIR)/test.c
 $(shell touch $(TEST_DIR)/test.c)
 endif
 
+SOURCES_WITH_HEADERS = \
+						$(DATA_STRUCT_DIR)/linked_list.c
+
 SOURCES = \
-			$(MAIN_FILE)
+			$(MAIN_FILE) \
+			$(SOURCES_WITH_HEADERS)
 
 HEADERS = \
-			$(COMMON_DIR)/defines.h
+			$(COMMON_DIR)/defines.h \
+			$(SOURCES_WITH_HEADERS:.c=.h)
 
 OBJECT_NAMES = $(patsubst %.s, %.o, $(patsubst %.c, %.o, $(SOURCES)))
 OBJECTS = $(patsubst %, $(OBJ_DIR)/%, $(OBJECT_NAMES))
