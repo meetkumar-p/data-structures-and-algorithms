@@ -3,49 +3,47 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Linked_List_Singly_Node
+struct LL_Singly_Node
 {
     int data;
-    Linked_List_Singly_Node *next;
+    LL_Singly_Node *next;
 };
 
-struct Linked_List_Node
+struct LL_Node
 {
     int data;
-    Linked_List_Node *next;
-    Linked_List_Node *prev;
+    LL_Node *next;
+    LL_Node *prev;
 };
 
-Linked_List_Singly_Node *linked_list_singly_create(const int32_t data)
+LL_Singly_Node *ll_singly_create(const int32_t data)
 {
-    Linked_List_Singly_Node *node;
-    node = (Linked_List_Singly_Node *)malloc(sizeof(Linked_List_Singly_Node));
+    LL_Singly_Node *node;
+    node = (LL_Singly_Node *)malloc(sizeof(LL_Singly_Node));
     node->data = data;
     node->next = NULL;
 
     return node;
 }
 
-void linked_list_singly_insert(Linked_List_Singly_Node **linked_list, const int32_t data)
+void ll_singly_insert(LL_Singly_Node **ll, const int32_t data)
 {
-    Linked_List_Singly_Node *node = linked_list_singly_create(data);
-    node->next = *linked_list;
+    LL_Singly_Node *node = ll_singly_create(data);
+    node->next = *ll;
 
-    *linked_list = node;
+    *ll = node;
 }
 
-void linked_list_singly_insert_before(Linked_List_Singly_Node *const node,
-                                      Linked_List_Singly_Node *const new_node)
+void ll_singly_insert_before(LL_Singly_Node *const node, LL_Singly_Node *const new_node)
 {
     new_node->next = node->next;
     node->next = new_node;
 }
 
-Linked_List_Singly_Node *linked_list_singly_find(Linked_List_Singly_Node const *linked_list,
-                                                 const int32_t data)
+LL_Singly_Node *ll_singly_find(LL_Singly_Node const *ll, const int32_t data)
 {
-    Linked_List_Singly_Node const *node = NULL;
-    Linked_List_Singly_Node const *temp = linked_list;
+    LL_Singly_Node const *node = NULL;
+    LL_Singly_Node const *temp = ll;
 
     while(NULL == node && NULL != temp)
     {
@@ -59,43 +57,43 @@ Linked_List_Singly_Node *linked_list_singly_find(Linked_List_Singly_Node const *
         }
     }
 
-    return (Linked_List_Singly_Node *)node;
+    return (LL_Singly_Node *)node;
 }
 
-void linked_list_singly_delete(Linked_List_Singly_Node **linked_list)
+void ll_singly_delete(LL_Singly_Node **ll)
 {
-    if(NULL == *linked_list)
+    if(NULL == *ll)
     {
         printf("Linked list is empty, nothing to free\n\r");
     }
     else
     {
-        Linked_List_Singly_Node *temp = *linked_list;
-        *linked_list = temp->next;
+        LL_Singly_Node *temp = *ll;
+        *ll = temp->next;
         free(temp);
     }
 }
 
-void linked_list_singly_free(Linked_List_Singly_Node **linked_list)
+void ll_singly_free(LL_Singly_Node **ll)
 {
-    if(NULL == *linked_list)
+    if(NULL == *ll)
     {
         printf("Linked list is empty, nothing to free\n\r");
     }
 
-    while(NULL != *linked_list)
+    while(NULL != *ll)
     {
-        Linked_List_Singly_Node *temp = *linked_list;
-        *linked_list = temp->next;
+        LL_Singly_Node *temp = *ll;
+        *ll = temp->next;
         free(temp);
     }
 }
 
-void linked_list_singly_print(Linked_List_Singly_Node const *linked_list)
+void ll_singly_print(LL_Singly_Node const *ll)
 {
-    Linked_List_Singly_Node const *node = linked_list;
+    LL_Singly_Node const *node = ll;
 
-    if(NULL != linked_list)
+    if(NULL != ll)
     {
         printf("%d", node->data);
         while(NULL != node->next)
@@ -111,10 +109,10 @@ void linked_list_singly_print(Linked_List_Singly_Node const *linked_list)
     }
 }
 
-Linked_List_Node *linked_list_create(const int32_t data)
+LL_Node *ll_create(const int32_t data)
 {
-    Linked_List_Node *node;
-    node = (Linked_List_Node *)malloc(sizeof(Linked_List_Node));
+    LL_Node *node;
+    node = (LL_Node *)malloc(sizeof(LL_Node));
     node->data = data;
     node->next = NULL;
     node->prev = NULL;
@@ -122,20 +120,20 @@ Linked_List_Node *linked_list_create(const int32_t data)
     return node;
 }
 
-void linked_list_insert(Linked_List_Node **linked_list, const int32_t data)
+void ll_insert(LL_Node **ll, const int32_t data)
 {
-    Linked_List_Node *node = linked_list_create(data);
-    node->next = *linked_list;
+    LL_Node *node = ll_create(data);
+    node->next = *ll;
 
     if(NULL != node->next)
     {
         node->next->prev = node;
     }
 
-    *linked_list = node;
+    *ll = node;
 }
 
-void linked_list_insert_before(Linked_List_Node *const node, Linked_List_Node *const new_node)
+void ll_insert_before(LL_Node *const node, LL_Node *const new_node)
 {
     new_node->next = node->next;
     new_node->prev = node;
@@ -143,7 +141,7 @@ void linked_list_insert_before(Linked_List_Node *const node, Linked_List_Node *c
     new_node->next->prev = new_node;
 }
 
-void linked_list_insert_after(Linked_List_Node *const node, Linked_List_Node *const new_node)
+void ll_insert_after(LL_Node *const node, LL_Node *const new_node)
 {
     new_node->next = node;
     new_node->prev = node->prev;
@@ -151,10 +149,10 @@ void linked_list_insert_after(Linked_List_Node *const node, Linked_List_Node *co
     new_node->prev->next = new_node;
 }
 
-Linked_List_Node *linked_list_find(Linked_List_Node const *linked_list, const int32_t data)
+LL_Node *ll_find(LL_Node const *ll, const int32_t data)
 {
-    Linked_List_Node const *node = NULL;
-    Linked_List_Node const *temp = linked_list;
+    LL_Node const *node = NULL;
+    LL_Node const *temp = ll;
 
     while(NULL == node && NULL != temp)
     {
@@ -168,19 +166,19 @@ Linked_List_Node *linked_list_find(Linked_List_Node const *linked_list, const in
         }
     }
 
-    return (Linked_List_Node *)node;
+    return (LL_Node *)node;
 }
 
-void linked_list_delete(Linked_List_Node **linked_list)
+void ll_delete(LL_Node **ll)
 {
-    if(NULL == *linked_list)
+    if(NULL == *ll)
     {
         printf("Linked list is empty, nothing to free\n\r");
     }
     else
     {
-        Linked_List_Node *temp = *linked_list;
-        *linked_list = temp->next;
+        LL_Node *temp = *ll;
+        *ll = temp->next;
 
         if(NULL != temp->next)
         {
@@ -191,17 +189,17 @@ void linked_list_delete(Linked_List_Node **linked_list)
     }
 }
 
-void linked_list_free(Linked_List_Node **linked_list)
+void ll_free(LL_Node **ll)
 {
-    if(NULL == *linked_list)
+    if(NULL == *ll)
     {
         printf("Linked list is empty, nothing to free\n\r");
     }
 
-    while(NULL != *linked_list)
+    while(NULL != *ll)
     {
-        Linked_List_Node *temp = *linked_list;
-        *linked_list = temp->next;
+        LL_Node *temp = *ll;
+        *ll = temp->next;
 
         if(NULL != temp->next)
         {
@@ -212,11 +210,11 @@ void linked_list_free(Linked_List_Node **linked_list)
     }
 }
 
-void linked_list_print(Linked_List_Node const *linked_list)
+void ll_print(LL_Node const *ll)
 {
-    Linked_List_Node const *node = linked_list;
+    LL_Node const *node = ll;
 
-    if(NULL != linked_list)
+    if(NULL != ll)
     {
         printf("%d", node->data);
         while(NULL != node->next)
