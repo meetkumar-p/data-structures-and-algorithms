@@ -57,7 +57,8 @@ $(shell touch $(TEST_DIR)/test.c)
 endif
 
 SOURCES_WITH_HEADERS = \
-						$(DATA_STRUCT_DIR)/linked_list.c
+						$(DATA_STRUCT_DIR)/linked_list.c \
+						$(DATA_STRUCT_DIR)/stack.c
 
 SOURCES = \
 			$(MAIN_FILE) \
