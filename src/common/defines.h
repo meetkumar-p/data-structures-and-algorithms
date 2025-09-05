@@ -3,6 +3,8 @@
 
 // clang-format off
 #define SUPPRESS_UNUSED                 __attribute__((unused))
+
+#define SEED                            (42U)
 // clang-format on
 
 #endif  // DEFINES_H_

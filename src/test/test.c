@@ -1,4 +1,5 @@
 #include "linked_list.h"
+#include "stack.h"
 
 #include "common/defines.h"
 
@@ -107,6 +108,52 @@ static void test_ll(void)
     ll_print(ll);
 
     ll_free(&ll);
+}
+
+SUPPRESS_UNUSED
+
+/**
+ * @brief Create a stack and push, pop, peek, check if it is empty, get size, and print it.
+ *
+ */
+static void test_stack(void)
+{
+    // create a stack
+    Stack *stack = stack_init();
+
+    // seed the random number generator
+    srandom(SEED);
+
+    printf("stack_is_empty(...) before pushing any items to stack = %s\n\r",
+           stack_is_empty(stack) ? "true" : "false");
+
+    for(int32_t count = 0; count < 10; count++)
+    {
+        static int32_t num;
+
+        num = (int32_t)random();
+        stack_push(stack, num);
+    }
+
+    printf("stack_is_empty(...) after pushing items to stack = %s\n\r",
+           stack_is_empty(stack) ? "true" : "false");
+    printf("stack_size(...) = %zu\n\r", stack_size(stack));
+    stack_print(stack);
+    printf("stack_size(...) = %zu\n\r", stack_size(stack));
+    printf("stack_peek(...) = %d\n\r", stack_peek(stack));
+    printf("stack_pop(...) = %d\n\r", stack_pop(stack));
+    printf("stack_size(...) = %zu\n\r", stack_size(stack));
+    stack_print(stack);
+
+    for(int32_t count = 0; count < 6; count++)
+    {
+        printf("stack_pop(...) = %d\n\r", stack_pop(stack));
+    }
+
+    printf("stack_size(...) = %zu\n\r", stack_size(stack));
+    stack_print(stack);
+
+    stack_free(&stack);
 }
 
 int main(void)
