@@ -1,5 +1,6 @@
 #include "linked_list.h"
 #include "stack.h"
+#include "queue.h"
 
 #include "common/defines.h"
 
@@ -154,6 +155,52 @@ static void test_stack(void)
     stack_print(stack);
 
     stack_free(&stack);
+}
+
+SUPPRESS_UNUSED
+
+/**
+ * @brief Create a queue and enqueue, dequeue, peek, check if it is empty, get size, and print it.
+ *
+ */
+static void test_queue(void)
+{
+    // create a queue
+    Queue *queue = queue_init();
+
+    // seed the random number generator
+    srandom(SEED);
+
+    printf("queue_is_empty(...) before pushing any element to queue = %s\n\r",
+           queue_is_empty(queue) ? "true" : "false");
+
+    for(int32_t count = 0; count < 10; count++)
+    {
+        static int32_t element;
+
+        element = (int32_t)random();
+        queue_enqueue(queue, element);
+    }
+
+    printf("queue_is_empty(...) after pushing elements to queue = %s\n\r",
+           queue_is_empty(queue) ? "true" : "false");
+    printf("queue_size(...) = %zu\n\r", queue_size(queue));
+    queue_print(queue);
+    printf("queue_size(...) = %zu\n\r", queue_size(queue));
+    printf("queue_peek(...) = %d\n\r", queue_peek(queue));
+    printf("queue_dequeue(...) = %d\n\r", queue_dequeue(queue));
+    printf("queue_size(...) = %zu\n\r", queue_size(queue));
+    queue_print(queue);
+
+    for(int32_t count = 0; count < 8; count++)
+    {
+        printf("queue_dequeue(...) = %d\n\r", queue_dequeue(queue));
+    }
+
+    printf("queue_size(...) = %zu\n\r", queue_size(queue));
+    queue_print(queue);
+
+    queue_free(&queue);
 }
 
 int main(void)
