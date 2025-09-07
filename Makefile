@@ -2,6 +2,7 @@
 SRC_DIR = src
 COMMON_DIR = $(SRC_DIR)/common
 DATA_STRUCT_DIR = $(SRC_DIR)/data_structures
+ALGORITHMS_DIR = $(SRC_DIR)/algorithms
 TEST_DIR = $(SRC_DIR)/test
 
 BUILD_DIR = build
@@ -11,7 +12,8 @@ BIN_DIR = $(BUILD_DIR)/bin
 INCLUDE_DIRS = \
 				$(SRC_DIR) \
 				$(COMMON_DIR) \
-				$(DATA_STRUCT_DIR)
+				$(DATA_STRUCT_DIR) \
+				$(ALGORITHMS_DIR)
 
 # Toolchain
 CC = clang
@@ -59,7 +61,8 @@ endif
 SOURCES_WITH_HEADERS = \
 						$(DATA_STRUCT_DIR)/linked_list.c \
 						$(DATA_STRUCT_DIR)/stack.c \
-						$(DATA_STRUCT_DIR)/queue.c
+						$(DATA_STRUCT_DIR)/queue.c \
+						$(ALGORITHMS_DIR)/sort.c
 
 SOURCES = \
 			$(MAIN_FILE) \
