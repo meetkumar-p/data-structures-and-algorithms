@@ -207,7 +207,7 @@ static void test_queue(void)
 SUPPRESS_UNUSED
 
 /**
- * @brief Create an array of pseudo-random values, print it, sort it using bubble sort, and print
+ * @brief Create array of pseudo-random values, print it, sort it using bubble sort, and print
  * sorted array.
  *
  */
@@ -216,7 +216,7 @@ static void test_bubble_sort(void)
     // seed random number generator
     srandom(SEED);
 
-    // create an array of values
+    // create array of values
     size_t size = 42;
     int32_t array[size];
     for(size_t idx = 0; idx < size; idx++)
@@ -245,7 +245,7 @@ static void test_bubble_sort(void)
 SUPPRESS_UNUSED
 
 /**
- * @brief Create an array of pseudo-random values, print it, sort it using selection sort, and print
+ * @brief Create array of pseudo-random values, print it, sort it using selection sort, and print
  * sorted array.
  *
  */
@@ -254,7 +254,7 @@ static void test_selection_sort(void)
     // seed random number generator
     srandom(SEED);
 
-    // create an array of values
+    // create array of values
     size_t size = 42;
     int32_t array[size];
     for(size_t idx = 0; idx < size; idx++)
@@ -271,6 +271,44 @@ static void test_selection_sort(void)
 
     // sort array
     sort_selection(array, size);
+
+    // print sorted array
+    printf("Sorted array:\n\r");
+    for(size_t idx = 0; idx < size; idx++)
+    {
+        printf("%d\n\r", array[idx]);
+    }
+}
+
+SUPPRESS_UNUSED
+
+/**
+ * @brief Create array of pseudo-random values, print it, sort it using insertion sort, and print
+ * sorted array.
+ *
+ */
+static void test_insertion_sort(void)
+{
+    // seed random number generator
+    srandom(SEED);
+
+    // create array of values
+    size_t size = 42;
+    int32_t array[size];
+    for(size_t idx = 0; idx < size; idx++)
+    {
+        array[idx] = (int32_t)random();
+    }
+
+    // print unsorted array
+    printf("Unsorted array:\n\r");
+    for(size_t idx = 0; idx < size; idx++)
+    {
+        printf("%d\n\r", array[idx]);
+    }
+
+    // sort array
+    sort_insertion(array, size);
 
     // print sorted array
     printf("Sorted array:\n\r");

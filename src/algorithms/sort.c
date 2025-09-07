@@ -38,3 +38,20 @@ void sort_selection(int32_t *array, const size_t size)
         array[i] = min_val;
     }
 }
+
+void sort_insertion(int32_t *array, const size_t size)
+{
+    for(size_t i = 1; i < size; i++)
+    {
+        size_t insert_idx = i;
+        int32_t curr_val = array[i];
+
+        for(size_t j = 0; (j < i) && (array[i - 1 - j] > curr_val); j++)
+        {
+            array[i - 1 - j + 1] = array[i - 1 - j];
+            insert_idx = i - 1 - j;
+        }
+
+        array[insert_idx] = curr_val;
+    }
+}
