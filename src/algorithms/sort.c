@@ -18,3 +18,23 @@ void sort_bubble(int32_t *array, const size_t size)
         }
     }
 }
+
+void sort_selection(int32_t *array, const size_t size)
+{
+    for(size_t i = 0; i < size - 1; i++)
+    {
+        size_t min_idx = i;
+
+        for(size_t j = i + 1; j < size; j++)
+        {
+            if(array[j] < array[min_idx])
+            {
+                min_idx = j;
+            }
+        }
+
+        int32_t min_val = array[min_idx];
+        array[min_idx] = array[i];
+        array[i] = min_val;
+    }
+}
