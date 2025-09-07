@@ -28,4 +28,12 @@ void sort_selection(int32_t *array, const size_t size);
  */
 void sort_insertion(int32_t *array, const size_t size);
 
+/**
+ * @brief Use merge sort algorithm to sort elements of array in ascending order.
+ *
+ * @param array Array to be sorted.
+ * @param size  Size of array.
+ */
+void sort_merge(int32_t *array, const size_t size);
+
 #endif  // SORT_H_
