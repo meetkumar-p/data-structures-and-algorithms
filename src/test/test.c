@@ -1,6 +1,7 @@
 #include "linked_list.h"
 #include "stack.h"
 #include "queue.h"
+#include "sort.h"
 
 #include "common/defines.h"
 
@@ -201,6 +202,43 @@ static void test_queue(void)
     queue_print(queue);
 
     queue_free(&queue);
+}
+
+SUPPRESS_UNUSED
+
+/**
+ * @brief Create an array of pseudo-random values, print it, sort it, and print the sorted array.
+ *
+ */
+static void test_bubble_sort(void)
+{
+    // seed the random number generator
+    srandom(SEED);
+
+    // create an array of values
+    size_t size = 42;
+    int32_t array[size];
+    for(size_t idx = 0; idx < size; idx++)
+    {
+        array[idx] = (int32_t)random();
+    }
+
+    // print the unsorted array
+    printf("Unsorted array:\n\r");
+    for(size_t idx = 0; idx < size; idx++)
+    {
+        printf("%d\n\r", array[idx]);
+    }
+
+    // sort the array
+    sort_bubble(array, size);
+
+    // print the sorted array
+    printf("Sorted array:\n\r");
+    for(size_t idx = 0; idx < size; idx++)
+    {
+        printf("%d\n\r", array[idx]);
+    }
 }
 
 int main(void)
