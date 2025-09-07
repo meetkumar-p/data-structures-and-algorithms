@@ -11,7 +11,7 @@
 SUPPRESS_UNUSED
 
 /**
- * @brief Print a message to the console.
+ * @brief Print a message to console.
  *
  */
 static void test_printf(void)
@@ -123,7 +123,7 @@ static void test_stack(void)
     // create a stack
     Stack *stack = stack_init();
 
-    // seed the random number generator
+    // seed random number generator
     srandom(SEED);
 
     printf("stack_is_empty(...) before pushing any items to stack = %s\n\r",
@@ -169,7 +169,7 @@ static void test_queue(void)
     // create a queue
     Queue *queue = queue_init();
 
-    // seed the random number generator
+    // seed random number generator
     srandom(SEED);
 
     printf("queue_is_empty(...) before pushing any element to queue = %s\n\r",
@@ -207,12 +207,13 @@ static void test_queue(void)
 SUPPRESS_UNUSED
 
 /**
- * @brief Create an array of pseudo-random values, print it, sort it, and print the sorted array.
+ * @brief Create an array of pseudo-random values, print it, sort it using bubble sort, and print
+ * sorted array.
  *
  */
 static void test_bubble_sort(void)
 {
-    // seed the random number generator
+    // seed random number generator
     srandom(SEED);
 
     // create an array of values
@@ -223,17 +224,55 @@ static void test_bubble_sort(void)
         array[idx] = (int32_t)random();
     }
 
-    // print the unsorted array
+    // print unsorted array
     printf("Unsorted array:\n\r");
     for(size_t idx = 0; idx < size; idx++)
     {
         printf("%d\n\r", array[idx]);
     }
 
-    // sort the array
+    // sort array
     sort_bubble(array, size);
 
-    // print the sorted array
+    // print sorted array
+    printf("Sorted array:\n\r");
+    for(size_t idx = 0; idx < size; idx++)
+    {
+        printf("%d\n\r", array[idx]);
+    }
+}
+
+SUPPRESS_UNUSED
+
+/**
+ * @brief Create an array of pseudo-random values, print it, sort it using selection sort, and print
+ * sorted array.
+ *
+ */
+static void test_selection_sort(void)
+{
+    // seed random number generator
+    srandom(SEED);
+
+    // create an array of values
+    size_t size = 42;
+    int32_t array[size];
+    for(size_t idx = 0; idx < size; idx++)
+    {
+        array[idx] = (int32_t)random();
+    }
+
+    // print unsorted array
+    printf("Unsorted array:\n\r");
+    for(size_t idx = 0; idx < size; idx++)
+    {
+        printf("%d\n\r", array[idx]);
+    }
+
+    // sort array
+    sort_selection(array, size);
+
+    // print sorted array
     printf("Sorted array:\n\r");
     for(size_t idx = 0; idx < size; idx++)
     {
