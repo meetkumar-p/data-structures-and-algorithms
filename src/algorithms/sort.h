@@ -36,4 +36,12 @@ void sort_insertion(int32_t *array, const size_t size);
  */
 void sort_merge(int32_t *array, const size_t size);
 
+/**
+ * @brief Use quick sort algorithm to sort elements of array in ascending order.
+ *
+ * @param array Array to be sorted.
+ * @param size  Size of array.
+ */
+void sort_quick(int32_t *array, const size_t size);
+
 #endif  // SORT_H_
