@@ -356,6 +356,44 @@ static void test_merge_sort(void)
     }
 }
 
+SUPPRESS_UNUSED
+
+/**
+ * @brief Create array of pseudo-random values, print it, sort it using quick sort, and print sorted
+ * array.
+ *
+ */
+static void test_quick_sort(void)
+{
+    // seed random number generator
+    srandom(SEED);
+
+    // create array of values
+    size_t size = 42;
+    int32_t array[size];
+    for(size_t idx = 0; idx < size; idx++)
+    {
+        array[idx] = (int32_t)random();
+    }
+
+    // print unsorted array
+    printf("Unsorted array:\n\r");
+    for(size_t idx = 0; idx < size; idx++)
+    {
+        printf("%d\n\r", array[idx]);
+    }
+
+    // sort array
+    sort_quick(array, size);
+
+    // print sorted array
+    printf("Sorted array:\n\r");
+    for(size_t idx = 0; idx < size; idx++)
+    {
+        printf("%d\n\r", array[idx]);
+    }
+}
+
 int main(void)
 {
     TEST();

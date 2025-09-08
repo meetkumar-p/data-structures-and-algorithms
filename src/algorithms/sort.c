@@ -138,3 +138,70 @@ static void sort_merge_merge(int32_t *array, size_t idx_left, size_t idx_mid, si
         array[k++] = array_right[j++];
     }
 }
+
+/**
+ * @brief Utility function of quick sort algorithm that recursively calls itself to sort the
+ * array/sub-array.
+ *
+ * @param array     Array/Sub-array to be sorted.
+ * @param idx_left  Left index of array/sub-array.
+ * @param idx_right Right index of array/sub-array.
+ */
+static void sort_quick_util(int32_t *array, size_t idx_left, size_t idx_right);
+
+/**
+ * @brief Utility function of quick sort algorithm that moves elements around in array/sub-array so
+ * all elements lower than pivot are to left of pivot element and all elements higher than pivot are
+ * to right of pivot element.
+ *
+ * @param array     Array/Sub-array to be sorted.
+ * @param idx_left  Left index of array/sub-array.
+ * @param idx_right Right index of array/sub-array.
+ *
+ * @return `size_t` Index of pivot element.
+ */
+static size_t sort_quick_partition(int32_t *array, size_t idx_left, size_t idx_right);
+
+void sort_quick(int32_t *array, const size_t size)
+{
+    sort_quick_util(array, 0, size - 1);
+}
+
+static void sort_quick_util(int32_t *array, size_t idx_left, size_t idx_right)
+{
+    if(idx_left < idx_right)
+    {
+        size_t idx_pivot = sort_quick_partition(array, idx_left, idx_right);
+
+        // only sort left sub-array of size greater than 1
+        if(0 < idx_pivot)
+        {
+            sort_quick_util(array, idx_left, idx_pivot - 1);
+        }
+        sort_quick_util(array, idx_pivot + 1, idx_right);
+    }
+}
+
+static size_t sort_quick_partition(int32_t *array, size_t idx_left, size_t idx_right)
+{
+    int32_t pivot = array[idx_right];
+
+    size_t i = idx_left - 1;
+
+    for(size_t j = idx_left; j < idx_right; j++)
+    {
+        if(array[j] <= pivot)
+        {
+            int32_t temp = array[++i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+    }
+
+    // move pivot to its sorted position in array
+    int32_t temp = array[i + 1];
+    array[i + 1] = array[idx_right];
+    array[idx_right] = temp;
+
+    return i + 1;
+}
